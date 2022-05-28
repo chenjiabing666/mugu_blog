@@ -1,5 +1,6 @@
 package com.mugu.blog.user.boot.service;
 
+import com.mugu.blog.user.common.po.SysPermission;
 import com.mugu.blog.user.common.po.SysRole;
 import com.mugu.blog.user.common.po.SysUser;
 
@@ -14,4 +15,5 @@ public interface SysUserService {
 
     List<SysUser> listByUserId(List<String> userIds);
 
+    List<SysPermission> getPermissionByUserId(Long userId);
 }

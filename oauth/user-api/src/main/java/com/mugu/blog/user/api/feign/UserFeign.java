@@ -2,6 +2,7 @@ package com.mugu.blog.user.api.feign;
 
 import com.mugu.blog.core.model.ResultMsg;
 import com.mugu.blog.user.api.feign.fallback.UserFeignFallback;
+import com.mugu.blog.user.common.po.SysPermission;
 import com.mugu.blog.user.common.po.SysRole;
 import com.mugu.blog.user.common.po.SysUser;
 import io.swagger.annotations.ApiOperation;
@@ -29,4 +30,8 @@ public interface UserFeign {
 
     @GetMapping("/blog-user-boot/user/listByUserId")
     ResultMsg<List<SysUser>> listByUserId(@RequestBody List<String> userIds);
+
+    @GetMapping("/blog-user-boot/user/getPermissionByUserId")
+    ResultMsg<List<SysPermission>> getPermissionByUserId(@RequestParam(value = "userId") Long userId);
+
 }

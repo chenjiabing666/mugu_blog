@@ -2,7 +2,8 @@ package com.mugu.blog.picture.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.mugu.blog.common.utils.AssertUtils;
-import com.mugu.blog.core.utils.OauthUtils;
+import com.mugu.blog.common.utils.OauthUtils;
+import com.mugu.blog.common.utils.OauthUtils;
 import com.mugu.blog.core.model.PageData;
 import com.mugu.blog.core.model.ResultMsg;
 import com.mugu.blog.file.server.api.feign.ImageUploadFeign;

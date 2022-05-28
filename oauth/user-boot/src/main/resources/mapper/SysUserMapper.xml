@@ -61,4 +61,20 @@ WHERE
 			#{item}
 		</foreach>
 	</select>
+
+	<select id="listPermissionByUserId" resultType="com.mugu.blog.user.common.po.SysPermission">
+		SELECT
+	*
+FROM
+	sys_permission
+WHERE
+	id IN (
+SELECT
+	permission_id
+FROM
+	sys_role_permission
+WHERE
+	role_id = ( SELECT role_id FROM sys_user_role WHERE id =  #{userId})
+	)
+	</select>
 </mapper>

@@ -3,7 +3,7 @@ package com.mugu.blog.oauth.server.controller;
 import com.mugu.blog.core.model.LoginVal;
 import com.mugu.blog.core.model.ResultMsg;
 import com.mugu.blog.core.model.oauth.OAuthConstant;
-import com.mugu.blog.core.utils.OauthUtils;
+import com.mugu.blog.common.utils.OauthUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

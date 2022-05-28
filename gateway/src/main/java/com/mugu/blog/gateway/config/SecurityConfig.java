@@ -92,7 +92,7 @@ public class SecurityConfig {
                 //白名单直接放行
                 .pathMatchers(ArrayUtil.toArray(whiteUrls.getUrls(), String.class)).permitAll()
                 //其他的请求必须鉴权，使用鉴权管理器
-                .anyExchange().access(accessManager)
+                .anyExchange().permitAll()
                 //鉴权的异常处理，权限不足，token失效
                 .and().exceptionHandling()
                 .authenticationEntryPoint(requestAuthenticationEntryPoint)

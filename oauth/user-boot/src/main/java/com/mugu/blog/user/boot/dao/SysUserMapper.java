@@ -1,5 +1,6 @@
 package com.mugu.blog.user.boot.dao;
 
+import com.mugu.blog.user.common.po.SysPermission;
 import com.mugu.blog.user.common.po.SysRole;
 import com.mugu.blog.user.common.po.SysUser;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,4 +19,6 @@ public interface SysUserMapper {
     SysUser selectByUserId(String userId);
 
     List<SysUser> listByUserId(List<String> list);
+
+    List<SysPermission> listPermissionByUserId(Long userId);
 }

@@ -2,6 +2,8 @@ package com.mugu.blog.core.model;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 保存登录用户的信息，此处可以根据业务需要扩展
  */
@@ -33,4 +35,6 @@ public class LoginVal{
      * 过期时间，单位秒，距离过期时间还有多少秒
      */
     private Long expireIn;
+
+    private List<String> permissions;
 }

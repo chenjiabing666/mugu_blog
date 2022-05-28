@@ -1,7 +1,9 @@
-package com.mugu.blog.core.utils;
+package com.mugu.blog.common.utils;
 
+import com.mugu.blog.common.interceptor.SecurityContextHolder;
 import com.mugu.blog.core.model.LoginVal;
 import com.mugu.blog.core.model.RequestConstant;
+import com.mugu.blog.core.utils.RequestContextUtils;
 
 import java.util.Objects;
 
@@ -10,6 +12,6 @@ import java.util.Objects;
  */
 public class OauthUtils {
     public static LoginVal getCurrentUser(){
-        return (LoginVal) Objects.requireNonNull(RequestContextUtils.getRequest().getAttribute(RequestConstant.LOGIN_VAL_ATTRIBUTE));
+        return Objects.requireNonNull(SecurityContextHolder.get());
     }
 }

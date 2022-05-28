@@ -15,6 +15,7 @@ public class OAuthConstant {
     public static final String MOBILE="mobile";
     public static final String EMAIL="email";
     public static final String NICK_NAME="nick_name";
+    public static final String PERMISSION="permissions";
 
 
     public static final String JTI="jti";
@@ -39,5 +40,7 @@ public class OAuthConstant {
     public final static String METHOD_SUFFIX=":";
 
     public final static String ROLE_ROOT_CODE=ROLE_PREFIX+"ROOT";
+
+    public final static String ROLE_ADMIN_CODE=ROLE_PREFIX+"ADMIN";
 
 }

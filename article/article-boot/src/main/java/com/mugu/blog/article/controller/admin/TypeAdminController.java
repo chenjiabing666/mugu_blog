@@ -6,6 +6,7 @@ import com.mugu.blog.article.common.model.req.TypeAddReq;
 import com.mugu.blog.article.common.model.req.TypeListReq;
 import com.mugu.blog.article.common.model.vo.TypeVo;
 import com.mugu.blog.article.service.TypeService;
+import com.mugu.blog.common.annotation.RequiresRoles;
 import com.mugu.blog.core.model.PageData;
 import com.mugu.blog.core.model.ResultMsg;
 import com.mugu.blog.mybatis.config.utils.PageUtils;
@@ -24,6 +25,7 @@ public class TypeAdminController {
     @Autowired
     private TypeService typeService;
 
+    @RequiresRoles
     @AvoidRepeatableCommit
     @ApiOperation("添加分类")
     @PostMapping("/add")
@@ -32,6 +34,7 @@ public class TypeAdminController {
         return ResultMsg.resultSuccess();
     }
 
+    @RequiresRoles
     @ApiOperation("分页查询分类")
     @PostMapping("/list")
     public ResultMsg<PageData<TypeVo>> list(@RequestBody TypeListReq param){
@@ -39,6 +42,7 @@ public class TypeAdminController {
         return ResultMsg.resultSuccess(page);
     }
 
+    @RequiresRoles
     @ApiOperation("根据ID查询分类详情")
     @GetMapping("/getById")
     public ResultMsg<Type> getById(Long id){

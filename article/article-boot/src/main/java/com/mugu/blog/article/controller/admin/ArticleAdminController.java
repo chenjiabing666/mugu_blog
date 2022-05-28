@@ -1,6 +1,5 @@
 package com.mugu.blog.article.controller.admin;
 
-import com.alibaba.fastjson.JSON;
 import com.mugu.blog.article.aspect.AvoidRepeatableCommit;
 import com.mugu.blog.article.common.model.req.ArticleAddReq;
 import com.mugu.blog.article.common.model.req.ArticleDelReq;
@@ -9,9 +8,11 @@ import com.mugu.blog.article.common.model.req.ArticleListReq;
 import com.mugu.blog.article.common.model.vo.ArticleVo;
 import com.mugu.blog.article.service.ArticleService;
 import com.mugu.blog.common.annotation.AuthInjection;
+import com.mugu.blog.common.annotation.RequiresRoles;
 import com.mugu.blog.core.model.BaseParam;
 import com.mugu.blog.core.model.PageData;
 import com.mugu.blog.core.model.ResultMsg;
+import com.mugu.blog.core.model.oauth.OAuthConstant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,7 @@ public class ArticleAdminController {
     @Autowired
     private ArticleService articleService;
 
+    @RequiresRoles
     @AvoidRepeatableCommit
     @ApiOperation("添加文章")
     @PostMapping("/add")
@@ -41,6 +43,7 @@ public class ArticleAdminController {
         return ResultMsg.resultSuccess();
     }
 
+    @RequiresRoles
     @AuthInjection
     @ApiOperation("获取文章列表")
     @PostMapping("/list")
@@ -48,12 +51,14 @@ public class ArticleAdminController {
         return ResultMsg.resultSuccess(articleService.list(req));
     }
 
+    @RequiresRoles
     @ApiOperation("搜索文章")
     @PostMapping("/search")
     public ResultMsg<PageData<ArticleVo>> search(@RequestBody @Valid BaseParam param) {
         return ResultMsg.resultSuccess(articleService.search(param));
     }
 
+    @RequiresRoles
     @AuthInjection
     @ApiOperation("删除文章")
     @PostMapping("/del")
@@ -62,6 +67,7 @@ public class ArticleAdminController {
         return ResultMsg.resultSuccess();
     }
 
+    @RequiresRoles
     @AuthInjection
     @ApiOperation("根据ID获取文章详情")
     @PostMapping("/getById")

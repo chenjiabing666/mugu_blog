@@ -2,6 +2,7 @@ package com.mugu.blog.user.boot.controller;
 
 import com.mugu.blog.core.model.ResultMsg;
 import com.mugu.blog.user.boot.service.SysUserService;
+import com.mugu.blog.user.common.po.SysPermission;
 import com.mugu.blog.user.common.po.SysRole;
 import com.mugu.blog.user.common.po.SysUser;
 import io.swagger.annotations.Api;
@@ -57,4 +58,14 @@ public class UserController {
     public ResultMsg<List<SysUser>> listByUserId(@RequestBody List<String> userIds){
         return ResultMsg.resultSuccess(sysUserService.listByUserId(userIds));
     }
+
+    @ApiOperation("根据用户唯一ID查询权限列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userId", defaultValue = "user", value = "用户唯一ID", paramType = "query", dataType = "String"),
+    })
+    @GetMapping("/getPermissionByUserId")
+    public ResultMsg<List<SysPermission>> getPermissionByUserId(Long userId){
+        return ResultMsg.resultSuccess(sysUserService.getPermissionByUserId(userId));
+    }
+
 }

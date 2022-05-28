@@ -42,6 +42,7 @@ public class JwtTokenUserDetailsService implements UserDetailsService {
         }
 
         List<String> roles = Objects.requireNonNull(roleResult.getData()).stream().map(sysRole -> OAuthConstant.ROLE_PREFIX+sysRole.getCode()).collect(Collectors.toList());
+
         return SecurityUser.builder()
                 .nickname(user.getNickname())
                 .gender(user.getGender())

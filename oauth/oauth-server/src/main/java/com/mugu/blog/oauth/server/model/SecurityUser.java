@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 @Data
 @Builder
@@ -33,6 +34,8 @@ public class SecurityUser implements UserDetails {
 
     //密码
     private String password;
+
+    private List<String> permissions;
 
     //权限+角色集合
     private Collection<? extends GrantedAuthority> authorities;

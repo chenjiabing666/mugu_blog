@@ -30,7 +30,7 @@ import com.mugu.blog.core.model.PageData;
 import com.mugu.blog.core.model.ResultCode;
 import com.mugu.blog.core.model.ResultMsg;
 import com.mugu.blog.core.utils.IpUtils;
-import com.mugu.blog.core.utils.OauthUtils;
+import com.mugu.blog.common.utils.OauthUtils;
 import com.mugu.blog.core.utils.RequestContextUtils;
 import com.mugu.blog.core.utils.SnowflakeUtil;
 import com.mugu.blog.mybatis.config.utils.PageUtils;

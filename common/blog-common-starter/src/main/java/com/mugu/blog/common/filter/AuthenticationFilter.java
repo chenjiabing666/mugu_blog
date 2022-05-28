@@ -21,7 +21,7 @@ import java.io.IOException;
  * @author 公众号：码猿技术专栏
  * 微服务过滤器，解密网关传递的用户信息，将其放入request中，便于后期业务方法直接获取用户信息
  */
-@Component
+//@Component
 public class AuthenticationFilter extends OncePerRequestFilter {
     /**
      * 具体方法主要分为两步
