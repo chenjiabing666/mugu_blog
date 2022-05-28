@@ -48,6 +48,7 @@
         <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
         <blog-gray.version>1.0-SNAPSHOT</blog-gray.version>
         <commons-io.version>2.2</commons-io.version>
+        <transmittable-thread-local.version>2.12.2</transmittable-thread-local.version>
     </properties>
 
     <dependencyManagement>
@@ -209,6 +210,14 @@
                 <artifactId>apm-toolkit-logback-1.x</artifactId>
                 <version>${skywaling.logback.version}</version>
             </dependency>
+
+            <!-- 线程传递值 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable-thread-local.version}</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>org.apache.skywalking</groupId>
