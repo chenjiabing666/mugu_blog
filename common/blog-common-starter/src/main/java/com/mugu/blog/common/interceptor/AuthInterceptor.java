@@ -24,13 +24,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 public class AuthInterceptor implements AsyncHandlerInterceptor {
-
-
     /**
-     * 在执行controller方法之前将请求头中的token信息解析出来，放入SecurityContextHolder中（ThreadLocal）
+     * 在执行controller方法之前将请求头中的token信息解析出来，放入SecurityContextHolder中（TransmittableThreadLocal）
      */
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         if (!(handler instanceof HandlerMethod))
             return true;
         //获取请求头中的加密的用户信息
@@ -47,10 +45,10 @@ public class AuthInterceptor implements AsyncHandlerInterceptor {
     }
 
     /**
-     * 将请求中的
+     * 在视图渲染之后执行，意味着一次请求结束，清除TTL中的身份信息
      */
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex){
         SecurityContextHolder.remove();
     }
 }

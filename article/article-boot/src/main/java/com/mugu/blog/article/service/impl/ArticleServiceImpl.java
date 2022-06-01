@@ -24,13 +24,13 @@ import com.mugu.blog.comments.api.feign.CommentFeign;
 import com.mugu.blog.comments.common.model.req.CommentListReq;
 import com.mugu.blog.comments.common.model.vo.TotalVo;
 import com.mugu.blog.common.utils.AssertUtils;
+import com.mugu.blog.common.utils.OauthUtils;
 import com.mugu.blog.core.constant.KeyConstant;
 import com.mugu.blog.core.model.BaseParam;
 import com.mugu.blog.core.model.PageData;
 import com.mugu.blog.core.model.ResultCode;
 import com.mugu.blog.core.model.ResultMsg;
 import com.mugu.blog.core.utils.IpUtils;
-import com.mugu.blog.common.utils.OauthUtils;
 import com.mugu.blog.core.utils.RequestContextUtils;
 import com.mugu.blog.core.utils.SnowflakeUtil;
 import com.mugu.blog.mybatis.config.utils.PageUtils;
@@ -46,7 +46,6 @@ import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
@@ -63,6 +62,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 import java.util.stream.Collectors;
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -92,7 +92,7 @@ public class ArticleServiceImpl implements ArticleService {
     private ElasticsearchRestTemplate elasticsearchTemplate;
 
     @Autowired
-    private AsyncTaskExecutor asyncTaskExecutor;
+    private Executor asyncTaskExecutor;
 
     @Transactional
     @Override

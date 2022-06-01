@@ -1,5 +1,6 @@
 package com.mugu.blog.async;
 
+import com.alibaba.ttl.threadpool.TtlExecutors;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -8,17 +9,18 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 @EnableScheduling
 @Configuration
 @EnableAsync
 public class AsyncAutoConfig {
-    //配置线程池
     @Bean
     @Primary
-    public AsyncTaskExecutor asyncTaskExecutor() {
+    public Executor asyncTaskExecutor() {
         ThreadPoolTaskExecutor poolTaskExecutor = new ThreadPoolTaskExecutor();
+        poolTaskExecutor.initialize();
         poolTaskExecutor.setCorePoolSize(4);
         poolTaskExecutor.setMaxPoolSize(6);
         // 设置线程活跃时间（秒）
@@ -36,6 +38,9 @@ public class AsyncAutoConfig {
         poolTaskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         // 等待所有任务结束后再关闭线程池
         poolTaskExecutor.setWaitForTasksToCompleteOnShutdown(true);
-        return poolTaskExecutor;
+
+
+        //这里对创建的ThreadPoolTaskExecutor使用TtlExecutors进行了包装
+        return TtlExecutors.getTtlExecutor(poolTaskExecutor);
     }
 }
