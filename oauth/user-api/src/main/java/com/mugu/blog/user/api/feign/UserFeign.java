@@ -34,4 +34,7 @@ public interface UserFeign {
     @GetMapping("/blog-user-boot/user/getPermissionByUserId")
     ResultMsg<List<SysPermission>> getPermissionByUserId(@RequestParam(value = "userId") Long userId);
 
+    @GetMapping("/blog-user-boot/user/getByEmail")
+    ResultMsg<SysUser> getByEmail(@RequestParam(value = "email") String email);
+
 }

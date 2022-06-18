@@ -14,6 +14,8 @@ public interface SysUserMapper {
      */
     SysUser selectByUserName(String username);
 
+    SysUser selectByEmail(String email);
+
     List<SysRole> selectRolesByUserId(Long userId);
 
     SysUser selectByUserId(String userId);

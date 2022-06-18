@@ -9,6 +9,8 @@ import java.util.List;
 public interface SysUserService {
     SysUser getUserByUsername(String username);
 
+    SysUser getUserByEmail(String email);
+
     List<SysRole> getRolesByUserId(Long userId);
 
     SysUser getByUserId(String userId);

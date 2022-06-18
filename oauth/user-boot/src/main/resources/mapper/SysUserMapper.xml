@@ -77,4 +77,7 @@ WHERE
 	role_id = ( SELECT role_id FROM sys_user_role WHERE id =  #{userId})
 	)
 	</select>
+    <select id="selectByEmail" resultType="com.mugu.blog.user.common.po.SysUser">
+		select * from sys_user where email=#{email} and status=1
+	</select>
 </mapper>

@@ -24,6 +24,11 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
+    public SysUser getUserByEmail(String email) {
+        return sysUserMapper.selectByEmail(email);
+    }
+
+    @Override
     public List<SysRole> getRolesByUserId(Long userId) {
         return sysUserMapper.selectRolesByUserId(userId);
     }

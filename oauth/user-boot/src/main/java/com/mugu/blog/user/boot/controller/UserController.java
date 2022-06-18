@@ -35,6 +35,16 @@ public class UserController {
         return ResultMsg.resultSuccess(sysUserService.getUserByUsername(username));
     }
 
+    @ApiOperation("根据邮箱查询详细信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "email", defaultValue = "123@qq.com", value = "邮箱", paramType = "query", dataType = "String"),
+    })
+    @GetMapping("/getByEmail")
+    public ResultMsg<SysUser> getByEmail(String email){
+        return ResultMsg.resultSuccess(sysUserService.getUserByEmail(email));
+    }
+
+
     @ApiOperation("根据用户唯一ID查询角色")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "userId", defaultValue = "user", value = "用户唯一ID", paramType = "query", dataType = "String"),

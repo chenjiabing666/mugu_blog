@@ -44,4 +44,10 @@ public class UserFeignFallback implements UserFeign {
         log.error("User Server Fallback..........");
         return ResultMsg.resultFail(ResultCode.SERVER_FALLBACK.getCode(),ResultCode.SERVER_FALLBACK.getMsg());
     }
+
+    @Override
+    public ResultMsg<SysUser> getByEmail(String email) {
+        log.error("User Server Fallback..........");
+        return ResultMsg.resultFail(ResultCode.SERVER_FALLBACK.getCode(),ResultCode.SERVER_FALLBACK.getMsg());
+    }
 }

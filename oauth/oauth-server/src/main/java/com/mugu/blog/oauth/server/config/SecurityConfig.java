@@ -25,6 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Qualifier(value = "jwtTokenUserDetailsService")
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private EmailSecurityConfig emailSecurityConfig;
+
     /**
      * 加密算法
      */
@@ -36,7 +39,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //todo 允许表单登录
-        http.authorizeRequests()
+        http
+                .apply(emailSecurityConfig)
+                .and()
+                .authorizeRequests()
                 //注销的接口需要放行
                 ///actuator/**、/instances/** 这两个是spring boot admin需要的接口，需要放行
                 .antMatchers("/oauth/logout","/actuator/**","/instances/**").permitAll()
