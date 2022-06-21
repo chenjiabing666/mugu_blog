@@ -1,4 +1,4 @@
-package com.mugu.blog.oauth.server.config;
+package com.mugu.blog.oauth.server.email.grant.service;
 
 import com.mugu.blog.oauth.server.email.grant.service.EmailDetailService;
 import com.mugu.blog.oauth.server.email.grant.service.other.EmailPasswordAuthenticationProvider;

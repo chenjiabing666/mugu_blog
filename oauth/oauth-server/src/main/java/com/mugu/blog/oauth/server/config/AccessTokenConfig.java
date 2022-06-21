@@ -100,8 +100,8 @@ public class AccessTokenConfig {
                 extendInformation.put(OAuthConstant.GENDER,user.getGender());
                 extendInformation.put(OAuthConstant.NICK_NAME,user.getNickname());
                 extendInformation.put(OAuthConstant.AVATAR,user.getAvatar());
-                extendInformation.put(OAuthConstant.MOBILE,user.getEmail());
-                extendInformation.put(OAuthConstant.EMAIL,user.getUserId());
+                extendInformation.put(OAuthConstant.MOBILE,user.getMobile());
+                extendInformation.put(OAuthConstant.EMAIL,user.getEmail());
                 extendInformation.put(OAuthConstant.PERMISSION,user.getPermissions());
                 //添加到additionalInformation
                 ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(extendInformation);

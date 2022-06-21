@@ -1,5 +1,6 @@
 package com.mugu.blog.oauth.server.config;
 
+import com.mugu.blog.oauth.server.email.grant.service.EmailSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
