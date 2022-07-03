@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //注销的接口需要放行
                 ///actuator/**、/instances/** 这两个是spring boot admin需要的接口，需要放行
-                .antMatchers("/oauth/logout","/actuator/**","/instances/**").permitAll()
+                .antMatchers("/oauth/logout","/actuator/**","/instances/**","/oauth/json/token").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

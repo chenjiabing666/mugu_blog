@@ -5,6 +5,7 @@ import com.mugu.blog.core.model.LoginVal;
 import com.mugu.blog.core.model.ResultMsg;
 import com.mugu.blog.core.model.oauth.OAuthConstant;
 import com.mugu.blog.oauth.server.exception.OAuthServerWebResponseExceptionTranslator;
+import com.mugu.blog.oauth.server.model.AuthTokenReq;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.exceptions.BadClientCredentialsException;
 import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
@@ -25,6 +27,8 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -54,11 +58,30 @@ public class AuthController implements InitializingBean {
 
     /**
      * 重写/oauth/token这个默认接口，返回的数据格式统一
+     * form-data请求方式
      */
     @PostMapping(value = "/token")
     public ResultMsg<OAuth2AccessToken> postAccessToken(Principal principal, @RequestParam
             Map<String, String> parameters) throws HttpRequestMethodNotSupportedException {
         OAuth2AccessToken accessToken = tokenEndpoint.postAccessToken(principal, parameters).getBody();
+        return ResultMsg.resultSuccess(accessToken);
+    }
+
+    /**
+     * 定义一个/oauth/token的接口，支持json传参方式登录
+     * application/json的请求方式
+     */
+    @PostMapping(value = "/json/token")
+    public ResultMsg<OAuth2AccessToken> postAccessToken(@RequestBody AuthTokenReq authTokenReq) throws HttpRequestMethodNotSupportedException {
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("grant_type", authTokenReq.getGrantType());
+        parameters.put("client_id", authTokenReq.getClientId());
+        parameters.put("client_secret", authTokenReq.getClientSecret());
+        parameters.put("username",authTokenReq.getUsername());
+        parameters.put("password",authTokenReq.getPassword());
+        parameters.put("email",authTokenReq.getEmail());
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(authTokenReq.getClientId(), authTokenReq.getClientSecret(), new ArrayList<>());
+        OAuth2AccessToken accessToken = tokenEndpoint.postAccessToken(authenticationToken, parameters).getBody();
         return ResultMsg.resultSuccess(accessToken);
     }
 
